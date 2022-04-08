@@ -29,6 +29,8 @@ import ProtectedRoutes from "./screens/components/ProtectedRoutes";
 import AdminRoutes from "./screens/components/adminRoutes";
 import DashboardScreen from "./screens/DashboardScreen";
 import ProductListScreen from "./screens/ProductListScreen";
+import { ProductEditScreen } from "./screens/ProductEditScreen";
+import { OrderListScreen } from "./screens/OrderListScreen";
 function App() {
   const {state , dispatch :ctxDispatch} =useContext(Store);
   const {cart, userInfo} = state;
@@ -117,7 +119,7 @@ function App() {
                       < LinkContainer to="admin/products">
                         <NavDropdown.Item>Products</NavDropdown.Item>
                       </LinkContainer>
-                      < LinkContainer to="/orderlist">
+                      < LinkContainer to="admin/orders">
                         <NavDropdown.Item>Orders</NavDropdown.Item>
                       </LinkContainer>
                       < LinkContainer to="/userlist">
@@ -162,9 +164,16 @@ function App() {
 
           {/* adimin Routes */}
 
-          <Route path="/admin/dashboard" element={<AdminRoutes><DashboardScreen/></AdminRoutes>}/>\
+          <Route path="/admin/dashboard" element={<AdminRoutes><DashboardScreen/></AdminRoutes>}/>
           <Route path="/admin/products" element={<AdminRoutes><ProductListScreen/></AdminRoutes>}/>
-
+          <Route path="/admin/product/:id" element={<AdminRoutes><ProductEditScreen/></AdminRoutes>}/>
+          <Route path="/admin/orders" element={<AdminRoutes><OrderListScreen/></AdminRoutes>}/>
+          {/* <Route
+          {/* <Route
+              path="/product/:id"
+              element={<ProductScreen />}
+              exact
+            ></Route> */}
 
           <Route path="/" element={<HomeScreen/>}/>
           <Route path="/cart" element={<ScreenCart/>}/>

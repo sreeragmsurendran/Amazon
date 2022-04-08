@@ -7,6 +7,7 @@ import seedRouter from './Routes/seedRoutes.js';
 import productRouter from './Routes/ProductRoute.js';
 import userRouter from './Routes/UserRoute.js';
 import orderRouter from './Routes/orderRoute.js';
+import uploadRoute from './Routes/UploadRoutes.js';
 // const express = require("express")
 // const data = require("data")
 const app = express();
@@ -24,6 +25,8 @@ app.get('/api/keys/paypal', (req, res) => {
   });
   
 app.use('/api/seed',seedRouter);
+app.use('/api/upload',uploadRoute);
+
 
 app.use('/api/products',productRouter);
 app.use('/api/users',userRouter);

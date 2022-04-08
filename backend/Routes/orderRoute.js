@@ -7,6 +7,15 @@ import { isAdmin, isAuth } from '../util.js';
 
 const orderRouter =express.Router();
 
+
+orderRouter.get('/',isAuth,isAdmin,async(req,res)=>{
+  console.log("orderss")
+  const orders = await Order.find().populate('user','name');
+  res.send(orders)
+})
+
+orderRouter.put('/:id/')
+
 orderRouter.get(
   '/summary',
   isAuth,isAdmin,expressAsyncHandler(async(req,res)=>{
@@ -77,6 +86,18 @@ orderRouter.get(
     })
   );
   
+  orderRouter.put(
+    '/:id/deliver',
+    isAuth,
+    expressAsyncHandler(async (req, res) => {
+      const order = await Order.findById(req.params.id);
+      if(order){
+        order.isDelivered = true;
+        order.deliveredAt =Date.now();
+        await order.save();
+        res.send({message:'Order Delivered'})
+      }
+    }))
   
   orderRouter.put(
     '/:id/pay',

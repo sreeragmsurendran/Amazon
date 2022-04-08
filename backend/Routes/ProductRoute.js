@@ -10,6 +10,61 @@ productRouter.get('/',async(req,res)=>{
     res.send(product);
 })
 
+productRouter.post('/',isAuth,isAdmin,expressAsyncHandler(async(req,res)=>{
+  const newproduct = await  new Product({
+    name :'sample name'+ Date.now(),
+    slug : 'sample-name-' +Date.now(),
+    image: '/images/p2.jpg',
+    price:0,
+    category:"sample category",
+    brand:'sample brand',
+    countInStock:0,
+    rating:0,
+    numReviews :0,
+    description :'sample description',
+  })
+const product = await newproduct.save();
+res.send({message :"Product created",product});
+
+}))
+
+productRouter.put('/:id',isAuth,isAdmin,expressAsyncHandler(async(req,res)=>{
+  const productId= req.params.id;
+  const product = await Product.findById(productId)
+  console.log("rating",req.body.rating)
+  if (product){
+      product.name =req.body.name,
+      product.slug =req.body.slug,
+      product.category=req.body.category,
+      product.image =req.body.image,
+      product.price =req.body.price,
+      product.countInStock =req.body.countInStock,
+      product.brand =req.body.brand,
+      // product.rating =req.body.rating,
+      // product.numReviews =req.body.numReviews,
+      product.description =req.body.description,
+      await product.save();
+      console.log("productqwertyqwertrttyer1233444w",req.body)
+      res.send({message:"Products updated "})
+    }else{
+      res.status(400).send({message:"Product update is failed"})
+    }
+
+}))
+
+productRouter.delete('/:id',isAuth,isAdmin ,expressAsyncHandler(async(req,res)=>{
+  console.log("hsdkukfhsdhfusheufhufhwe",req.params.id)
+    const product = await Product.findById(req.params.id);
+    console.log("product", product)
+    if(product){
+      const deletedProduct = await product.remove(); 
+      res.send({message:"Product deleted"})
+    }else {
+      res.status(400).send({message:"Product Not deleted"})
+    }
+}
+))
+
 const PAGE_SIZE =3;
 productRouter.get(
   '/admin/',
@@ -32,6 +87,9 @@ productRouter.get(
   })
 
 )
+
+
+
 
 productRouter.get(
     '/search',

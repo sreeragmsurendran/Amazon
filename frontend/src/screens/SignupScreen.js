@@ -51,19 +51,20 @@ export default function SignupScreen() {
     <Container className='small-container'>
     <h1 className='my-3'> Sign Up</h1>
       <Form onSubmit={submitHandler}>
-        <Form.Group className='mb-3' controlId="email">
-        <Form.Group className='mb-3' controlId="password">
+       
+        <Form.Group className='mb-3 col-lg-8' controlId="password">
           <Form.Label >Name</Form.Label>
           <Form.Control type='text' required onChange={(e)=>setName(e.target.value)}></Form.Control>
         </Form.Group>
+        <Form.Group className='mb-3 col-lg-8' controlId="email">
           <Form.Label >Email</Form.Label>
           <Form.Control type='email' required onChange={(e)=>setEmail(e.target.value)}></Form.Control>
         </Form.Group>
-        <Form.Group className='mb-3' controlId="password">
+        <Form.Group className='mb-3 col-lg-8' controlId="password">
           <Form.Label >Password</Form.Label>
           <Form.Control type='password' required onChange={(e)=>setPassword(e.target.value)}></Form.Control>
         </Form.Group>
-        <Form.Group className='mb-3' controlId="password">
+        <Form.Group className='mb-3 col-lg-8' controlId="password">
           <Form.Label >confirm Password</Form.Label>
           <Form.Control type='password' required onChange={(e)=>setConfirmPassword(e.target.value)}></Form.Control>
         </Form.Group>

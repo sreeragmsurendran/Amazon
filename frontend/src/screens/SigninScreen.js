@@ -39,23 +39,22 @@ export default function SigninScreen() {
    if(userInfo){
      navigate(redirect)
    } 
-  
-   
   }, [navigate,redirect,userInfo])
   
   return (
-   <Container className='small-container'>
-     <h1 className='my-3'> Sign In</h1>
-       <Form onSubmit={submitHandler}>
-         <Form.Group className='mb-3' controlId="email">
+   <Container className='small-container m-auto'>
+     
+     <h1 className='my-3 ' > Sign In</h1>
+       <Form onSubmit={submitHandler} className=''>
+         <Form.Group className='col-lg-8' controlId="email">
            <Form.Label >Email</Form.Label>
            <Form.Control type='email' required onChange={(e)=>setEmail(e.target.value)}></Form.Control>
          </Form.Group>
-         <Form.Group className='mb-3' controlId="password">
+         <Form.Group className='col-lg-8' controlId="password">
            <Form.Label >Password</Form.Label>
            <Form.Control type='password' required onChange={(e)=>setPassword(e.target.value)}></Form.Control>
          </Form.Group>
-         <div className='mb-3'>
+         <div className='mt-4 '>
            <Button type='submit'>Sign In</Button>
          </div>
          <div className='mb-3'>
