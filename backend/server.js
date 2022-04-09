@@ -7,7 +7,7 @@ import seedRouter from './Routes/seedRoutes.js';
 import productRouter from './Routes/ProductRoute.js';
 import userRouter from './Routes/UserRoute.js';
 import orderRouter from './Routes/orderRoute.js';
-import uploadRoute from './Routes/UploadRoutes.js';
+import uploadRoute from './Routes/uploadRoutes.js';
 // const express = require("express")
 // const data = require("data")
 const app = express();
